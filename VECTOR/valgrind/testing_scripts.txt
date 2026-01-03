@@ -1,0 +1,14 @@
+bad use (valgrind detected 2 errors):
+    sys_vector_resize_up(&v,1);
+    vector_init(&v,1,8);
+    printf("Capacity : %ld\n",v.capacity);
+    sys_vector_resize_up(&v,1);
+    v.count = 2;
+    sys_vector_resize_down(&v);
+    printf("Capacity : %ld\n",v.capacity);
+    vector_free(&v);
+    sys_vector_resize_up(&v,1);
+
+good use (valgrind detected 0 errors):
+    vector_init(&v,1,0);
+    vector_free(&v);

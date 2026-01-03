@@ -1,0 +1,144 @@
+==11089== Memcheck, a memory error detector
+==11089== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==11089== Using Valgrind-3.22.0-bd4db67b1d-20231031 and LibVEX; rerun with -h for copyright info
+==11089== Command: ./test.exe
+==11089== Parent PID: 8524
+==11089== 
+--11089-- 
+--11089-- Valgrind options:
+--11089--    --leak-check=full
+--11089--    --show-leak-kinds=all
+--11089--    --track-origins=yes
+--11089--    --verbose
+--11089--    --log-file=valgrind-out.txt
+--11089-- Contents of /proc/version:
+--11089--   Linux version 6.6.87.2-microsoft-standard-WSL2 (root@439a258ad544) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025
+--11089-- 
+--11089-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--11089-- Page sizes: currently 4096, max supported 4096
+--11089-- Valgrind library directory: /usr/libexec/valgrind
+--11089-- Reading syms from /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe
+--11089-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--11089--   Considering /usr/lib/debug/.build-id/52/0e05878220fb2fc6d28ff46b63b3fd5d48e763.debug ..
+--11089--   .. build-id is valid
+--11089-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--11089--    object doesn't have a dynamic symbol table
+--11089-- Scheduler: using generic scheduler lock implementation.
+--11089-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==11089== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-11089-by-samy-on-???
+==11089== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-11089-by-samy-on-???
+==11089== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-11089-by-samy-on-???
+==11089== 
+==11089== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==11089== don't want to do, unless you know exactly what you're doing,
+==11089== or are doing some strange experiment):
+==11089==   /usr/bin/vgdb --pid=11089 ...command...
+==11089== 
+==11089== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==11089==   /path/to/gdb ./test.exe
+==11089== and then give GDB the following command
+==11089==   target remote | /usr/bin/vgdb --pid=11089
+==11089== --pid is optional if only one valgrind process is running
+==11089== 
+--11089-- REDIR: 0x4028b00 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c2e1a (???)
+--11089-- REDIR: 0x40272b0 (ld-linux-x86-64.so.2:index) redirected to 0x580c2e34 (???)
+--11089-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--11089-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==11089== WARNING: new redirection conflicts with existing -- ignoring it
+--11089--     old: 0x04028b00 (strlen              ) R-> (0000.0) 0x580c2e1a ???
+--11089--     new: 0x04028b00 (strlen              ) R-> (2007.0) 0x0484f340 strlen
+--11089-- REDIR: 0x40274e0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4850460 (strcmp)
+--11089-- REDIR: 0x4026910 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853cd0 (mempcpy)
+--11089-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--11089--   Considering /usr/lib/debug/.build-id/27/4eec488d230825a136fa9c4d85370fed7a0a5e.debug ..
+--11089--   .. build-id is valid
+--11089-- REDIR: 0x4028ca0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x484fc90 (strncmp)
+--11089-- REDIR: 0x4917050 (libc.so.6:strnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49170e0 (libc.so.6:strpbrk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49151a0 (libc.so.6:strcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492e3b0 (libc.so.6:wcsnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4914290 (libc.so.6:memset) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492db20 (libc.so.6:wcslen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49993f0 (libc.so.6:__memcpy_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4914200 (libc.so.6:memrchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492e350 (libc.so.6:wcsncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4913720 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492c8e0 (libc.so.6:wcschr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4915090 (libc.so.6:index) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4917110 (libc.so.6:rindex) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492c990 (libc.so.6:wcscmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49144b0 (libc.so.6:stpncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x493aeb0 (libc.so.6:wmemchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916ef0 (libc.so.6:strncmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4914510 (libc.so.6:strcasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916310 (libc.so.6:strcspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x492d8f0 (libc.so.6:wcscpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4915020 (libc.so.6:strcat) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916df0 (libc.so.6:strncasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4915110 (libc.so.6:strchrnul) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4913630 (libc.so.6:bcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49162a0 (libc.so.6:strcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49145b0 (libc.so.6:strcasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916cc0 (libc.so.6:strlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916f90 (libc.so.6:strncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x493af30 (libc.so.6:wmemcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4999510 (libc.so.6:__memmove_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==11089== WARNING: new redirection conflicts with existing -- ignoring it
+--11089--     old: 0x049eaa10 (__memcpy_chk_avx_una) R-> (2030.0) 0x04853dd0 __memcpy_chk
+--11089--     new: 0x049eaa10 (__memcpy_chk_avx_una) R-> (2024.0) 0x04853740 __memmove_chk
+--11089-- REDIR: 0x4914440 (libc.so.6:stpcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4913fc0 (libc.so.6:memmove) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==11089== Preferring higher priority redirection:
+--11089--     old: 0x049eaa40 (__memcpy_avx_unalign) R-> (2018.0) 0x04851580 __memcpy_avx_unaligned_erms
+--11089--     new: 0x049eaa40 (__memcpy_avx_unalign) R-> (2018.1) 0x04852d60 memmove
+--11089-- REDIR: 0x49135b0 (libc.so.6:memchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49172e0 (libc.so.6:strspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49140e0 (libc.so.6:mempcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x4916d50 (libc.so.6:strncasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--11089-- REDIR: 0x49ef630 (libc.so.6:__strrchr_avx2) redirected to 0x484ed20 (rindex)
+==11089== Conditional jump or move depends on uninitialised value(s)
+==11089==    at 0x109497: sys_vector_resize_up (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==    by 0x109214: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==  Uninitialised value was created by a stack allocation
+==11089==    at 0x1091E9: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089== 
+--11089-- REDIR: 0x49ed780 (libc.so.6:__strlen_avx2) redirected to 0x484f220 (strlen)
+--11089-- REDIR: 0x490f650 (libc.so.6:malloc) redirected to 0x48467b0 (malloc)
+==11089== Conditional jump or move depends on uninitialised value(s)
+==11089==    at 0x48467D1: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11089==    by 0x1093AB: vector_init (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==    by 0x10922A: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==  Uninitialised value was created by a stack allocation
+==11089==    at 0x1091E9: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089== 
+--11089-- REDIR: 0x49eaa00 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x48538d0 (mempcpy)
+--11089-- REDIR: 0x49ecde0 (libc.so.6:__strchrnul_avx2) redirected to 0x48537b0 (strchrnul)
+--11089-- REDIR: 0x49eaa40 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852d60 (memmove)
+--11089-- REDIR: 0x49100a0 (libc.so.6:realloc) redirected to 0x484db00 (realloc)
+--11089-- REDIR: 0x490fd30 (libc.so.6:free) redirected to 0x4849820 (free)
+==11089== 
+==11089== HEAP SUMMARY:
+==11089==     in use at exit: 0 bytes in 0 blocks
+==11089==   total heap usage: 3 allocs, 3 frees, 1,028 bytes allocated
+==11089== 
+==11089== All heap blocks were freed -- no leaks are possible
+==11089== 
+==11089== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==11089== 
+==11089== 1 errors in context 1 of 2:
+==11089== Conditional jump or move depends on uninitialised value(s)
+==11089==    at 0x48467D1: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11089==    by 0x1093AB: vector_init (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==    by 0x10922A: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==  Uninitialised value was created by a stack allocation
+==11089==    at 0x1091E9: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089== 
+==11089== 
+==11089== 1 errors in context 2 of 2:
+==11089== Conditional jump or move depends on uninitialised value(s)
+==11089==    at 0x109497: sys_vector_resize_up (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==    by 0x109214: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089==  Uninitialised value was created by a stack allocation
+==11089==    at 0x1091E9: main (in /home/samy/development/os_development/github/OS_Prepa/Phase_0/Lists_Arrays/1/test.exe)
+==11089== 
+==11089== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

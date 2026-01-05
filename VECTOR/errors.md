@@ -130,3 +130,42 @@ Floating point exception (core dumped)
 
 In my script, v.count = 0, so, when we do a resize down, we basically do a division by 0, which is pretty illegal and
 dangerous !!
+
+### Error 3 :
+
+Command :
+```bash
+./test.exe
+```
+
+Terminal :
+
+```bash
+./dynamic_array.c: In function ‘main’:
+./dynamic_array.c:21:27: warning: passing argument 3 of ‘vector_set_index’ makes pointer from integer without a cast [-Wint-conversion]
+   21 |     vector_set_index(&v,1,5);
+      |                           ^
+      |                           |
+      |                           int
+In file included from ./dynamic_array.c:2:
+./dynamic_array.h:25:65: note: expected ‘void *’ but argument is of type ‘int’
+   25 | int vector_set_index(struct vector *vector, size_t index, void *element); //Set a value at a specific index of the vector with a byte by byte copy.
+      |                                                           ~~~~~~^~~~~~~
+./dynamic_array.c:22:5: error: too many arguments to function ‘vector_get_index’
+   22 |     vector_get_index(&v,1,'d');
+      |     ^~~~~~~~~~~~~~~~
+./dynamic_array.h:26:7: note: declared here
+   26 | void *vector_get_index(struct vector *vector, size_t index); //Returns an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+./dynamic_array.c: At top level:
+./dynamic_array.c:212:7: error: conflicting types for ‘vector_get_index’; have ‘void *(struct vector *, size_t,  char)’ {aka ‘void *(struct vector *, long unsigned int,  char)’}
+  212 | void *vector_get_index(struct vector *vector, size_t index, char type) { //Returns a pointer to an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+./dynamic_array.h:26:7: note: previous declaration of ‘vector_get_index’ with type ‘void *(struct vector *, size_t)’ {aka ‘void *(struct vector *, long unsigned int)’}
+   26 | void *vector_get_index(struct vector *vector, size_t index); //Returns an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~                                                              ^
+```
+
+#### Explaining : 
+Basically, in my testing script, I put vector_set_index(&v,1,4); , which is illegal. We are asking for a pointer, not just a value.
+For the error in get_index, I forget to update the definition in the header file.

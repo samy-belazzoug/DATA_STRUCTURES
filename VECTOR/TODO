@@ -1,0 +1,2 @@
+do sys_get_int() which returns a int
+do sys_get_char() which returns a char

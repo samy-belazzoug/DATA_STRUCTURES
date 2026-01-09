@@ -16,17 +16,17 @@ int main() {
     sys_vector_resize_up(&v,1);
     */
     //Good use
-    vector_init(&v,4,3);
+    
+    vector_init(&v,1,3);
+    char a = 'a';
+    char b = 'b';
     //vector_get_index(&v,1);
-    int a = 8;
-    int n = 15;
-    vector_set_index(&v,1,&a);
-    //void *b = vector_get_index(&v,1);
-    for (size_t i = 0; i <= v.capacity; i++) {
-        printf("%p\n",vector_get_index(&v,i));
-    }
-    vector_set_index(&v,1,&n);
-    vector_get_index(&v,1);
+    vector_set_index(&v,0,&a);
+    vector_set_index(&v,1,&b);
+    char *c = vector_get_index(&v,0);
+    char *d = vector_get_index(&v,1);
+    printf("%c\n",*c);
+    printf("%c\n",*d);
     vector_free(&v);
     return 0;
 }
@@ -209,7 +209,7 @@ int vector_set_index(struct vector *vector, size_t index, void *element) { //Set
     else { //We can proceed.
         unsigned char *index_array = (unsigned char *)vector->array + (index * vector->item_size);
         unsigned char *index_element = (unsigned char *)element;
-        for (size_t i = 0; i <= sizeof(element);i++) {
+        for (size_t i = 0; i < vector->item_size;i++) {
             index_array[i] = index_element[i];
         }
         return 0;
@@ -217,7 +217,7 @@ int vector_set_index(struct vector *vector, size_t index, void *element) { //Set
 }
 
 void *vector_get_index(struct vector *vector, size_t index) { //Returns a pointer to an element of the array at a specific index
-    return &vector->array + (index * vector->item_size);
+    return vector->array + (index * vector->item_size);
 }
 
 //Operations

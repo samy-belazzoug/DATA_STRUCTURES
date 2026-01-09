@@ -9,3 +9,9 @@ E.G :
 
 SIZE_T VALUES HAVE TO BE POSITIVE OR 0. NO  N E G A T I V E
 In fact, item_size, capacity has to be positive (count is managed by myself so don't worry).
+
+Truly personnal, thats for myself.
+I AM STUPID.
+So, in my set function, I used to loop through sizeof(vector->item_size), which is absolutely wrong.
+In fact, I loop through the size of size_t (8 by default), not the size of vector->item_size (which actually depends on what the user wants).
+That is pretty bad ngl.

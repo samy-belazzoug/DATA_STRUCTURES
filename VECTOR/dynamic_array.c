@@ -19,8 +19,14 @@ int main() {
     vector_init(&v,4,3);
     //vector_get_index(&v,1);
     int a = 8;
+    int n = 15;
     vector_set_index(&v,1,&a);
-    printf("%p",vector_get_index(&v,1,'d'));
+    //void *b = vector_get_index(&v,1);
+    for (size_t i = 0; i <= v.capacity; i++) {
+        printf("%p\n",vector_get_index(&v,i));
+    }
+    vector_set_index(&v,1,&n);
+    vector_get_index(&v,1);
     vector_free(&v);
     return 0;
 }
@@ -196,40 +202,22 @@ int sys_vector_resize_down(struct vector *vector) { //remove x2 less items and p
 
 //Getters / Setters
 int vector_set_index(struct vector *vector, size_t index, void *element) { //Set a value at a specific index of the vector with a byte by byte copy.
-    if (index < 0 || index >= vector->capacity) { //Checks if the index is correct
+    if (index >= vector->capacity) { //Checks if the index is correct
         printf("Warning: index out of bounds.\n");
         return 1;
     }
     else { //We can proceed.
         unsigned char *index_array = (unsigned char *)vector->array + (index * vector->item_size);
         unsigned char *index_element = (unsigned char *)element;
-        for (size_t i = 0; i <= vector->item_size;i++) {
+        for (size_t i = 0; i <= sizeof(element);i++) {
             index_array[i] = index_element[i];
         }
         return 0;
     }
 }
 
-void *vector_get_index(struct vector *vector, size_t index, char type) { //Returns a pointer to an element of the array at a specific index
-    if (index < 0 || index >= vector->capacity) { //Checks if the index is correct
-        printf("Warning: index out of bounds.\n");
-    }
-    else { //We can proceed.
-        if (type == 'c') {
-            unsigned char *index_array = (unsigned char *)vector->array + index;
-            printf("%c\n",index_array[0]);
-            return vector->array + index;
-        }
-        else if (type == 'd') {
-            unsigned char *index_array = (unsigned char *)vector->array + index;
-            /*for (size_t i = 0; i < vector->item_size; i++) {
-                printf("%d\n",index_array[i]);
-            }*/
-            printf("%d\n",index_array[3]);
-            return vector->array + index;
-        }
-        
-    }
+void *vector_get_index(struct vector *vector, size_t index) { //Returns a pointer to an element of the array at a specific index
+    return &vector->array + (index * vector->item_size);
 }
 
 //Operations

@@ -1,0 +1,11 @@
+THINGS I AM NOT IN CONTROL
+
+IF USER MAKES A TYPE CONFUSION.
+E.G : 
+    vector_init(&v,1,3); --> CHAR
+    int a = 8; --> INT
+    vector_set_index(&v,1,&a);
+    vector_get_index(&v,1,'d'); --> WILL PRINT 0
+
+SIZE_T VALUES HAVE TO BE POSITIVE OR 0. NO  N E G A T I V E
+In fact, item_size, capacity has to be positive (count is managed by myself so don't worry).

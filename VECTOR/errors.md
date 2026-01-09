@@ -169,3 +169,78 @@ In file included from ./dynamic_array.c:2:
 #### Explaining : 
 Basically, in my testing script, I put vector_set_index(&v,1,4); , which is illegal. We are asking for a pointer, not just a value.
 For the error in get_index, I forget to update the definition in the header file.
+
+### Error 4 :
+
+Command :
+```bash
+make
+```
+
+Terminal :
+
+```bash
+dynamic_array.c: In function ‘vector_set_index’:
+dynamic_array.c:202:15: error: comparison of unsigned expression in ‘< 0’ is always false [-Werror=type-limits]
+  202 |     if (index < 0 || index >= vector->capacity) { //Checks if the index is correct
+      |               ^
+dynamic_array.c: In function ‘vector_get_index’:
+dynamic_array.c:217:15: error: comparison of unsigned expression in ‘< 0’ is always false [-Werror=type-limits]
+  217 |     if (index < 0 || index >= vector->capacity) { //Checks if the index is correct
+      |               ^
+dynamic_array.c:235:1: error: control reaches end of non-void function [-Werror=return-type]
+  235 | }
+      | ^
+cc1: all warnings being treated as errors
+make: *** [makefile:6: all] Error 1
+```
+
+#### Explaining : 
+size_t is defined as an unsigned int, which means it doesn't have negative values. So we must avoid comparing a size_t with negative values, in fact : if (index < 0).
+
+The right solution would be : if (index >= vector->capacity). It even makes my task easier.
+I can't manage negative size_t, gcc makes it all for me! 
+
+### Error 5 :
+
+Command :
+```bash
+make
+```
+
+Terminal :
+
+```bash
+gcc -Wall -Wextra -O2 -Werror dynamic_array.c -o dynamic_array
+dynamic_array.c: In function ‘main’:
+dynamic_array.c:24:5: error: too few arguments to function ‘vector_get_index’
+   24 |     vector_get_index(&v,1);
+      |     ^~~~~~~~~~~~~~~~
+In file included from dynamic_array.c:2:
+dynamic_array.h:26:7: note: declared here
+   26 | void *vector_get_index(struct vector *vector, size_t index, char type); //Returns an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+dynamic_array.c:26:5: error: too few arguments to function ‘vector_get_index’
+   26 |     vector_get_index(&v,1);
+      |     ^~~~~~~~~~~~~~~~
+dynamic_array.h:26:7: note: declared here
+   26 | void *vector_get_index(struct vector *vector, size_t index, char type); //Returns an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+dynamic_array.c: In function ‘vector_set_index’:
+dynamic_array.c:202:15: error: comparison of unsigned expression in ‘< 0’ is always false [-Werror=type-limits]
+  202 |     if (index < 0 || index >= vector->capacity) { //Checks if the index is correct
+      |               ^
+dynamic_array.c: At top level:
+dynamic_array.c:216:7: error: conflicting types for ‘vector_get_index’; have ‘void *(struct vector *, size_t)’ {aka ‘void *(struct vector *, long unsigned int)’}
+  216 | void *vector_get_index(struct vector *vector, size_t index) { //Returns a pointer to an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+dynamic_array.h:26:7: note: previous declaration of ‘vector_get_index’ with type ‘void *(struct vector *, size_t,  char)’ {aka ‘void *(struct vector *, long unsigned int,  char)’}
+   26 | void *vector_get_index(struct vector *vector, size_t index, char type); //Returns an element of the array at a specific index
+      |       ^~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make: *** [makefile:6: all] Error 1
+```
+
+#### Explaining : 
+I've modified the parameters of my function vector_get_index but I forget to update it on the .h
+I will do this error an infinite amount of times I think xD.

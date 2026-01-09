@@ -23,7 +23,7 @@ int sys_vector_resize_down(struct vector *vector); //remove x2 less items and pr
 
 //Getters / Setters
 int vector_set_index(struct vector *vector, size_t index, void *element); //Set a value at a specific index of the vector with a byte by byte copy.
-void *vector_get_index(struct vector *vector, size_t index, char type); //Returns an element of the array at a specific index
+void *vector_get_index(struct vector *vector, size_t index); //Returns an element of the array at a specific index
 
 //Operations
 int vector_push_back(struct vector *vector, void *element); //Adds a new element at the end of the queue (NOTE : Processes a reallocation!)
